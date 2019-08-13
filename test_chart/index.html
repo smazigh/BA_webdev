@@ -1,0 +1,35 @@
+<html>
+   <head>
+      <title>Google Charts Tutorial</title>
+     
+      <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+
+   </head>
+   <body>
+         <div id="simpleApp">
+               <button color="primary" v-on:click="loadApi">Load</button>
+
+
+
+
+               <ul>
+                     <li >{{ idArray }}</li>
+                     <li v-for="item in powerArray"> {{ item }}</li>
+                  </ul>
+
+                  <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+                     </div>
+           </div>
+           
+      <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+      </div>
+      <script src="vue.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+       <script src="main.js"></script>
+       
+      
+   </body>
+
+
+</html>
