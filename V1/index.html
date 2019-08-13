@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta charset="utf-8">
+      <title>Sceduling Plan</title>
+    </head>
+
+    <body>
+      <ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">Monthly</a></li>
+  <li><a href="#!">Weekly</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">Daily</a></li>
+  <li><a href="#!">Hourly</a></li>
+</ul>
+      <nav>
+     <div class="nav-wrapper">
+       <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Power Scheduling</a>
+       <ul class="right hide-on-med-and-down">
+         <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+         <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+         <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+         <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Frequency<i class="material-icons right">arrow_drop_down</i></a></li>
+       </ul>
+     </div>
+   </nav>
+
+   <div id="timeline" style="height: 180px; width: 1900px;"></div>
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/custom.js"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      $.get('/SchedulingPlan.json').done(data => {
+        console.log(data.name);
+        
+      });
+
+      google.charts.load('current', {'packages':['timeline']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var container = document.getElementById('timeline');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'EnergySource' });
+        dataTable.addColumn({ type: 'string', id: 'Value' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+          [ 'Solar #234', "100%", new Date(0,0,0,0,0,0), new Date(0,0,0,1,0,0) ],
+          [ 'Solar #234', "100%", new Date(0,0,0,1,0,0), new Date(0,0,0,2,0,0) ],
+          [ 'Solar #234', "100%", new Date(0,0,0,2,0,0), new Date(0,0,0,3,0,0) ],
+          ['Solar #234',"52,78%", new Date(0,0,0,3,0,0), new Date(0,0,0,4,0,0)],
+          [ 'Solar #234', "46,11%", new Date(0,0,0,4,0,0), new Date(0,0,0,5,0,0) ],
+          [ 'Solar #234', "46,11%", new Date(0,0,0,5,0,0), new Date(0,0,0,6,0,0) ],
+          [ 'Solar #234', "31,12%", new Date(0,0,0,6,0,0), new Date(0,0,0,7,0,0) ],
+          [ 'Solar #234', "31,12%", new Date(0,0,0,7,0,0), new Date(0,0,0,8,0,0) ],
+          [ 'Solar #234', "31,12%", new Date(0,0,0,8,0,0), new Date(0,0,0,9,0,0) ],
+          [ 'Solar #234', "31,12%", new Date(0,0,0,9,0,0), new Date(0,0,0,10,0,0) ],
+          [ 'Solar #234', "52,78%", new Date(0,0,0,10,0,0), new Date(0,0,0,11,0,0) ],
+          [ 'Solar #234', "100%", new Date(0,0,0,11,0,0), new Date(0,0,0,12,0,0) ],
+          [ 'Solar #234', "71,78%", new Date(0,0,0,12,0,0), new Date(0,0,0,13,0,0) ],
+          [ 'Solar #234', "100%", new Date(0,0,0,13,0,0), new Date(0,0,0,14,0,0) ],
+          [ 'Solar #234', "100%", new Date(0,0,0,14,0,0), new Date(0,0,0,15,0,0) ],
+          [ 'Solar #234', "100%", new Date(0,0,0,15,0,0), new Date(0,0,0,16,0,0) ],
+          [ 'Solar #234', "100%", new Date(0,0,0,16,0,0), new Date(0,0,0,17,0,0) ],
+          [ 'Solar #234', "100%", new Date(0,0,0,17,0,0), new Date(0,0,0,18,0,0) ],
+          [ 'Coal #145', "41,04%" ,    new Date(0,0,0,6,0,0),  new Date(0,0,0,7,0,0) ],
+          [ 'Coal #145', "41,04%" ,    new Date(0,0,0,7,0,0),  new Date(0,0,0,8,0,0) ],
+          [ 'Coal #145', "41,04%" ,    new Date(0,0,0,8,0,0),  new Date(0,0,0,9,0,0) ],
+          [ 'Coal #145', "41,04%" ,    new Date(0,0,0,9,0,0),  new Date(0,0,0,10,0,0) ],
+          [ 'Coal #145', "28,22%" ,    new Date(0,0,0,12,0,0),  new Date(0,0,0,13,0,0) ],
+          [ 'Coal #145', "35,31%" ,    new Date(0,0,0,18,0,0),  new Date(0,0,0,19,0,0) ],
+          [ 'Coal #145', "61,45%" ,    new Date(0,0,0,19,0,0),  new Date(0,0,0,20,0,0) ],
+          [ 'Coal #145', "61,45%" ,    new Date(0,0,0,20,0,0),  new Date(0,0,0,21,0,0) ],
+          [ 'Nuclear #365', "47,22%", new Date(0,0,0,3,0,0),  new Date(0,0,0,4,0,0) ],
+          [ 'Nuclear #365', "53,89%", new Date(0,0,0,4,0,0),  new Date(0,0,0,5,0,0) ],
+          [ 'Nuclear #365', "53,89%", new Date(0,0,0,5,0,0),  new Date(0,0,0,6,0,0) ],
+          [ 'Nuclear #365', "27,84%", new Date(0,0,0,6,0,0),  new Date(0,0,0,7,0,0) ],
+          [ 'Nuclear #365', "27,84%", new Date(0,0,0,7,0,0),  new Date(0,0,0,8,0,0) ],
+          [ 'Nuclear #365', "27,84%", new Date(0,0,0,8,0,0),  new Date(0,0,0,9,0,0) ],
+          [ 'Nuclear #365', "27,84%", new Date(0,0,0,9,0,0),  new Date(0,0,0,10,0,0) ],
+          [ 'Nuclear #365', "47,22%", new Date(0,0,0,10,0,0),  new Date(0,0,0,11,0,0) ],
+          [ 'Nuclear #365', "22,15%", new Date(0,0,0,18,0,0),  new Date(0,0,0,19,0,0) ],
+          [ 'Nuclear #365', "38,55%", new Date(0,0,0,19,0,0),  new Date(0,0,0,20,0,0) ],
+          [ 'Nuclear #365', "38,55%", new Date(0,0,0,20,0,0),  new Date(0,0,0,21,0,0) ],
+          [ 'Nuclear #365', "100%", new Date(0,0,0,21,0,0),  new Date(0,0,0,22,0,0) ],
+          [ 'Nuclear #365', "100%", new Date(0,0,0,22,0,0),  new Date(0,0,0,23,0,0) ],
+          [ 'Nuclear #365', "100%", new Date(0,0,0,23,0,0),  new Date(0,0,0,24,0,0) ],]);
+var options = {
+  timeline: {singleColor:'blue'}
+};
+        chart.draw(dataTable,options);
+      }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    </body>
+  </html>
